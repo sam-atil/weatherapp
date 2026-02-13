@@ -1,14 +1,34 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Flask App</title>
-</head>
-<body>
-    <h1>Welcome to Flask!</h1>
-    <p>This is a simple Flask app with a structured file organization.</p>
-    <p>Hello, {{ name }}!</p>
-</body>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Flask App</title>
+    </head>
+    <body>
+        <div class = "container">
+            <!--Form Section-->
+            <h1>Enter Weather Information</h1>
+            <form method="POST">
+                <div>
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city">
+                </div>
+
+                <div>
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state">
+                </div>
+
+                <div>
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country">
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            
+            <!--Error Msg Section-->
+
+        </div>
+        
+    </body>
 </html>
