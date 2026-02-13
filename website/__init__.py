@@ -5,8 +5,6 @@ import os
 from dotenv import \
     load_dotenv  # Works for local server, needs .env file to work
 from flask import Flask
-# from models import db, User
-from flask_login import LoginManager
 
 load_dotenv()
 
