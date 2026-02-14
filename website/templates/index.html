@@ -8,7 +8,7 @@
         <div class = "container">
             <!--Form Section-->
             <h1>Enter Weather Information</h1>
-            <form method="POST">
+            <form id = "weather_form" method="POST">
                 <div>
                     <label for="city">City</label>
                     <input type="text" id="city" name="city">
@@ -25,10 +25,11 @@
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            
+
             <!--Error Msg Section-->
+            <p id="error"></p>
 
         </div>
-        
+        <script src="../static/script.js"></script>
     </body>
 </html>

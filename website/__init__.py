@@ -1,13 +1,9 @@
-# from views import main_blueprint
-# from auth import auth_blueprint
 import os
-
 from dotenv import \
     load_dotenv  # Works for local server, needs .env file to work
 from flask import Flask
 
 load_dotenv()
-
 
 def create_app():
     app = Flask(__name__)
