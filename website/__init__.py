@@ -12,7 +12,8 @@ def create_app():
     if os.environ.get('CONFIG_TYPE') == 'config.TestingConfig':
         app.config['SECRET_KEY'] = 'secret'
     else:
-        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') #within .env file
+        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+        app.config['WEATHER_KEY'] = os.environ.get('WEATHER_KEY') #within .env file
         
 
     from .views import main_blueprint
