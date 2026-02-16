@@ -57,7 +57,7 @@ async function displayWeather(){
 
                 <!-- Header -->
                 <div>
-                    <h5 class="text-uppercase text-light text-bold mb-3">Current weather</h6>
+                    <h5 id="current-weather" class="text-uppercase text-light text-bold mb-3">Current weather</h6>
                     <small>${new Date(data.dt * 1000).toLocaleString()}</small>
                 </div>
 
