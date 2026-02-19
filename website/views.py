@@ -30,9 +30,7 @@ def get_weather():
         return {"error": "Missing some fields"}, 400
 
     try: 
-        api_response = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={weather_api_key}&units=metric"
-            )
+        api_response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={weather_api_key}&units=metric")
         api_response.raise_for_status()
         weather_data = api_response.json()
 

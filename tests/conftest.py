@@ -8,7 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))#Forcing
 
 @pytest.fixture(scope='module')
 def test_client():
-    # Set the Testing configuration prior to creating the Flask application
+    """Set the Testing configuration prior to creating the Flask application"""
     os.environ['CONFIG_TYPE'] = 'config.TestingConfig'
     flask_app = create_app()
 
