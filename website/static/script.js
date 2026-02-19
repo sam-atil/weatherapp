@@ -68,7 +68,7 @@ form.addEventListener('submit', (event) => {
                 document.getElementById("error").textContent = "Invalid Inputs";
             }
         }). then(data => {
-            addWeatherData(data);
+            addWeatherData(data.data);
         });
     }
 });

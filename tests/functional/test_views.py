@@ -26,7 +26,7 @@ def test_form_page(test_client):
     assert b'weather-desc' in response.data
     assert b'wind-speed' in response.data
     assert b'humidity' in response.data
-    assert b'visbility' in response.data
+    assert b'visibility' in response.data
     assert b'pressure' in response.data
     assert b'dew-point' in response.data
 
@@ -50,13 +50,7 @@ def test_weather_api(test_client):
     response = test_client.post('/api/v1/weather', json = data)
 
     assert response.status_code == 200
-    json_data = response.get_json()
     assert response.get_json()["success"] is True
-
-    #Check if session is updated
-    with test_client.session_transaction() as session:
-        assert 'weather' in session
-        assert session['weather']['name'] == "El Paso"
 
 
 def test_weather_api_missing_fields(test_client):

@@ -15,149 +15,146 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>
-    Argon Dashboard 3 by Creative Tim
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <!-- CSS Files -->
-  <link id="pagestyle" href="../static/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
-  <link rel="stylesheet" href="../static/style.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+      Argon Dashboard 3 by Creative Tim
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../static/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/style.css">
 
-</head>
+  </head>
 
-<body class="bg-blue">
-  <main class="position-relative border-radius-xs">
-    <!-- <div class = "container mt-4">
-      <div id="weather"></div>
-    </div> -->
+  <body class="bg-blue">
+    <main class="position-relative border-radius-xs">
+      
+      <!--Form Input Section-->
+      <div class = "input-container">
+        <h1>Enter Weather Information</h1>
+              <form id = "weather_form" method="POST">
+                  <div>
+                      <label for="city">City</label>
+                      <input type="text" id="city" name="city">
+                  </div>
 
-    <!--Form Input Section-->
-    <div class = "input-container">
-      <h1>Enter Weather Information</h1>
-            <form id = "weather_form" method="POST">
-                <div>
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="city">
-                </div>
+                  <div>
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state">
+                  </div>
 
-                <div>
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state">
-                </div>
+                  <div>
+                      <label for="country">Country</label>
+                      <input type="text" id="country" name="country">
+                  </div>
+                  <button type="submit">Submit</button>
+              </form>
+      </div>
 
-                <div>
-                    <label for="country">Country</label>
-                    <input type="text" id="country" name="country">
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-    </div>
-
-    <!--Error Msg Section-->
-    <p id="error"></p>
+      <!--Error Msg Section-->
+      <p id="error"></p>
 
 
-    <!--Weather Section-->
+      <!--Weather Section-->
 
-    <div class = "container mt-4">
+      <div class = "container mt-4">
 
-      <!--Weather Container-->
-      <div id = "weather">
-        <div class = "card border-0 card-color">
-          <div class = "card-body">
+        <!--Weather Container-->
+        <div id = "weather">
+          <div class = "card border-0 card-color">
+            <div class = "card-body">
 
-            <!--Header Section-->
-            <div>
-              <h5 id = "current-weather" class = "text-uppercase text-light text-bold mb-3">current weather</h5>
-              <p id = "current-weather-val"></p>
-            </div>
-
-            <!--Main Row-->
-            <div class = "row align-items-center">
-              <!--Icon Col-->
-              <div class = "col-md-2 text-center">
-                <img class = "weather-img" id = "weather-icon">
+              <!--Header Section-->
+              <div>
+                <h5 id = "current-weather" class = "text-uppercase text-light text-bold mb-3">current weather</h5>
+                <p id = "current-weather-val"></p>
               </div>
 
-              <!--Temperature Col-->
-              <div class = "col-md-4">
-                <h1 class = "display-2 mb-0 text-light" id = "temp-col"></h1>
-              </div>
+              <!--Main Row-->
+              <div class = "row align-items-center">
+                <!--Icon Col-->
+                <div class = "col-md-2 text-center">
+                  <img class = "weather-img" id = "weather-icon">
+                </div>
 
-              <!--Condition Col-->
-              <div class = "col-md-6">
-                <h4 class="mb-1 text-light" id="condition-desc"></h4>
-                <p id = "condition-val"></p>
-              </div>
-            </div>
+                <!--Temperature Col-->
+                <div class = "col-md-4">
+                  <h1 class = "display-2 mb-0 text-light" id = "temp-col"></h1>
+                </div>
 
-            <!--Description Row-->
-            <div class = "row">
-              <p class ="mt-1 mb-4" id="weather-desc"></p>
-            </div>
-
-            <!--Stats Row-->
-            <div class = "row text-center">
-
-              <div class="col-2">
-                <div class="p-1 border rounded">
-                  <h6 class="text-light">Wind</h6>
-                  <p id="wind-speed"></p>
+                <!--Condition Col-->
+                <div class = "col-md-6">
+                  <h4 class="mb-1 text-light" id="condition-desc"></h4>
+                  <p id = "condition-val"></p>
                 </div>
               </div>
 
-              <div class="col-2">
-                <div class="p-1 border rounded">
-                  <h6 class = "text-light">Humidity</h6>
-                  <p id="humidity"></p>
-                </div>
+              <!--Description Row-->
+              <div class = "row">
+                <p class ="mt-1 mb-4" id="weather-desc"></p>
               </div>
 
-              <div class="col-2">
-                <div class="p-1 border rounded">
-                  <h6 class = "text-light">Visibility</h6>
-                  <p id="visibility"></p>
+              <!--Stats Row-->
+              <div class = "row text-center">
+
+                <div class="col-2">
+                  <div class="p-1 border rounded">
+                    <h6 class="text-light">Wind</h6>
+                    <p id="wind-speed"></p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-2">
-                <div class="p-1 border rounded">
-                  <h6 class = "text-light">Pressure</h6>
-                  <p id = "pressure"></p>
+                <div class="col-2">
+                  <div class="p-1 border rounded">
+                    <h6 class = "text-light">Humidity</h6>
+                    <p id="humidity"></p>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-2">
-                <div class="p-1 border rounded">
-                  <h6 class = "text-light">Dew Point</h6>
-                  <p id = "dew-point"></p>
+                <div class="col-2">
+                  <div class="p-1 border rounded">
+                    <h6 class = "text-light">Visibility</h6>
+                    <p id="visibility"></p>
+                  </div>
                 </div>
+
+                <div class="col-2">
+                  <div class="p-1 border rounded">
+                    <h6 class = "text-light">Pressure</h6>
+                    <p id = "pressure"></p>
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="p-1 border rounded">
+                    <h6 class = "text-light">Dew Point</h6>
+                    <p id = "dew-point"></p>
+                  </div>
+                </div>
+
+
               </div>
-
-
             </div>
           </div>
         </div>
       </div>
-    </div>
-      
+        
 
-  </main>
- 
-  <!--   Core JS Files   -->
-  <script src="/static/script.js"></script>
+    </main>
   
-</body>
+    <!--   Core JS Files   -->
+    <script src="/static/script.js"></script>
+    
+  </body>
 
 </html>

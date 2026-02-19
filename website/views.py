@@ -28,20 +28,24 @@ def get_weather():
     country = data.get("country")
     
     if not city or not state or not country:
-        return jsonify({"error": "Missing some fields"}), 400
+        return {"error": "Missing some fields"}, 400
     
-    api_response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={weather_api_key}&units=metric")
-
-    if api_response.status_code != 200:
-        return jsonify({"error": "api response failure"}), 400
     
-    return api_response.json()
+    try: 
+        api_response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={weather_api_key}&units=metric")
+        api_response.raise_for_status()
+        weather_data = api_response.json()
+    
+    except requests.exceptions.HTTPError:
+        return {"error": "api response failure"}, 400
+    
+    return {"success": True, "data": weather_data}, 200
 
 
 @main_blueprint.route('/api/v1/weather', methods=['POST'])
 def update_index():
-    weather_data = get_weather()
-    return jsonify(weather_data)
+    weather_data, status = get_weather()
+    return jsonify(weather_data), status
 
 # @main_blueprint.route('/api/v1/weather', methods = ['POST'])
 # def get_weather():
