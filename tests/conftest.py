@@ -1,7 +1,7 @@
-from website import create_app
 import pytest
 import sys
 import os
+from website import create_app
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))#Forcing 
 
 @pytest.fixture(scope='module')

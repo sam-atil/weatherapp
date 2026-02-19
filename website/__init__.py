@@ -14,7 +14,7 @@ def create_app():
     else:
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
         app.config['WEATHER_KEY'] = os.environ.get('WEATHER_KEY') #within .env file
-        
+
 
     from .views import main_blueprint
 
