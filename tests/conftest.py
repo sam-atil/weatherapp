@@ -1,6 +1,8 @@
-import pytest
-import sys
+"""Testing file for the whole program"""
+
 import os
+import sys
+import pytest
 from website import create_app
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))#Forcing 
 

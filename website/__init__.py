@@ -1,3 +1,5 @@
+"""Initialization File for the app"""
+
 import os
 from dotenv import \
     load_dotenv  # Works for local server, needs .env file to work

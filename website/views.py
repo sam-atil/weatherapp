@@ -5,7 +5,6 @@ views.py - Barebones form to request data about submitted city, state, and count
 import os
 from flask import Blueprint, jsonify, render_template
 from flask import request
-
 import requests
 
 # Create a blueprint
