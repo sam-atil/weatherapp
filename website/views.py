@@ -8,9 +8,6 @@ from flask import request
 import requests
 from website.views import main_blueprint
 
-# Create a blueprint
-main_blueprint = Blueprint('main', __name__)
-
 #API Key
 weather_api_key = os.getenv('WEATHER_KEY')
 

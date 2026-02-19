@@ -4,10 +4,12 @@ import os
 from dotenv import \
     load_dotenv  # Works for local server, needs .env file to work
 from flask import Flask
+from .views import main_blueprint
 
 load_dotenv()
 
 def create_app():
+    """Set ups the configurations for the weather app"""
     app = Flask(__name__)
 
     # check if testing app, to configure the app for testing
@@ -17,8 +19,6 @@ def create_app():
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
         app.config['WEATHER_KEY'] = os.environ.get('WEATHER_KEY') #within .env file
 
-
-    from .views import main_blueprint
 
     # Register blueprint for routes
     app.register_blueprint(main_blueprint)
