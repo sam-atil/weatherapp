@@ -2,10 +2,11 @@
 views.py - Barebones form to request data about submitted city, state, and country
 """
 
-from flask import Blueprint, jsonify, render_template, redirect, session, url_for
+import os
+
+from flask import Blueprint, jsonify, render_template
 from flask import request
 
-import os
 import requests
 
 # Create a blueprint
@@ -20,6 +21,7 @@ def index():
     #Render Form
     return render_template("dashboard.html")
 
+#Helper function to retrieve info from OpenWeather API
 def get_weather():
     data = request.get_json()
 
@@ -42,34 +44,8 @@ def get_weather():
     return {"success": True, "data": weather_data}, 200
 
 
+#API Route
 @main_blueprint.route('/api/v1/weather', methods=['POST'])
 def update_index():
     weather_data, status = get_weather()
     return jsonify(weather_data), status
-
-# @main_blueprint.route('/api/v1/weather', methods = ['POST'])
-# def get_weather():
-#     response = 
-
-#     print(api_response.status_code)
-#     print(api_response.text)
-
-#     if api_response.status_code != 200: #Fail
-#         return jsonify({"error": "api response failure"}), 400
-    
-#     #Temporarily storing weather
-#     weather_data = api_response.json()
-#     session["weather"] = weather_data
-
-#     return jsonify({"success": True})
-
-
-
-# @main_blueprint.route("/api/v1/display")
-# def latest_weather():
-#     weather = session.get("weather")
-
-#     if not weather:
-#         return jsonify({"error": ""}), 400
-    
-#     return jsonify(weather)

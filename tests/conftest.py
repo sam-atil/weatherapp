@@ -1,11 +1,8 @@
+from website import create_app
 import pytest
-from flask import session
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))#Forcing 
-
-from website import create_app
-
 
 @pytest.fixture(scope='module')
 def test_client():
