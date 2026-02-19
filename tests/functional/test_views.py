@@ -1,5 +1,4 @@
 #Page Render Tests
-
 def test_form_page(test_client):
     """
     GIVEN a Flask application configured for testing
@@ -8,22 +7,29 @@ def test_form_page(test_client):
     """
 
     response = test_client.get('/')
+
+    #Checking form inputs elements
     assert response.status_code == 200
     assert b'city' in response.data
     assert b'state' in response.data
     assert b'country' in response.data
-
-#Empty page, as we need input values to render the data elements
-def test_dashboard_page(test_client):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/dashboard' page is requested (GET)
-    THEN check if response is valid
-    """
-
-    response = test_client.get('/dashboard')
-    assert response.status_code == 200
+    
+    #Checking weather container
     assert b'weather' in response.data
+
+    #Checking established weather elements
+    assert b'current-weather-val' in response.data
+    assert b'weather-icon' in response.data
+    assert b'temp-col' in response.data
+    assert b'condition-desc' in response.data
+    assert b'condition-val' in response.data
+    assert b'weather-desc' in response.data
+    assert b'wind-speed' in response.data
+    assert b'humidity' in response.data
+    assert b'visbility' in response.data
+    assert b'pressure' in response.data
+    assert b'dew-point' in response.data
+
 
 
 #API Weather Tests
@@ -84,50 +90,3 @@ def test_weather_api_incorrect_fields(test_client):
     response = test_client.post('/api/v1/weather', json = data)
     assert response.status_code == 400
     assert response.get_json()["error"] == "api response failure"
-
-
-#API Display Test
-
-def test_display_api(test_client):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/api/v1/display' route is called with weather data in session
-    THEN check if response is valid
-    """
-
-    #Simulating session data
-    with test_client.session_transaction() as session:
-        session["weather"] = {
-            "dt": 12805000000,
-            "main": {"temp": 40, "feels_like": 30,"humidity": 20},
-            "weather": [{"main": "Cloudy"}]
-        }
-
-    #Calling route
-    response = test_client.get('/api/v1/display')  
-    assert response.status_code == 200
-    
-    #Checking if data is returned as json
-    data = response.get_json()
-    assert data['dt'] == 12805000000
-    assert data['main']['temp'] == 40
-    assert data['main']['feels_like'] == 30
-    assert data['main']['humidity'] == 20
-    assert data['weather'][0]['main'] == 'Cloudy'
-
-
-def test_display_api_missing_session(test_client):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/api/v1/display' route is called with no weather data in session
-    THEN check if response is valid
-    """
-
-    #Creating an empty session
-    with test_client.session_transaction() as session:
-        session.clear()  # Ensure session is empty
-
-    #Calling route without session data
-    response = test_client.get('/api/v1/display')
-    assert response.status_code == 400
-    assert response.get_json()['error'] == "No Data to Display"
